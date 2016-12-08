@@ -1,5 +1,5 @@
-var forEach = function () {
-    for (var i = 0; i < points.length; i++) {
-         revealPoint (index);
+var forEach = function (array,callback) {
+    for (var i = 0; i < array.length; i++) {
+         callback (array[i]);
     }
 }

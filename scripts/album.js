@@ -30,6 +30,22 @@
      ]
  };
 
+ // Mollie's Example Album
+ var albumDrake = {
+     title: 'Feel No Ways',
+     artist: 'Drake',
+     label: 'EM',
+     year: '2015',
+     albumArtUrl: 'assets/images/album_covers/20.png',
+     songs: [
+         { title: 'Hotline Bling', duration: '1:01' },
+         { title: 'One Dance', duration: '5:01' },
+         { title: 'Trophies', duration: '3:21'},
+         { title: 'Can you hear me now?', duration: '3:14' },
+         { title: 'Wrong phone number', duration: '2:15'}
+     ]
+ };
+
 var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -42,14 +58,14 @@ var createSongRow = function(songNumber, songName, songLength) {
      return template;
  };
 
- var setCurrentAlbum = function(album) {
-     // #1
+ // #1
      var albumTitle = document.getElementsByClassName('album-view-title')[0];
      var albumArtist = document.getElementsByClassName('album-view-artist')[0];
      var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
      var albumImage = document.getElementsByClassName('album-cover-art')[0];
      var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
- 
+
+ var setCurrentAlbum = function(album) {   
      // #2
      albumTitle.firstChild.nodeValue = album.title;
      albumArtist.firstChild.nodeValue = album.artist;
@@ -67,4 +83,15 @@ var createSongRow = function(songNumber, songName, songLength) {
  
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
+     
+     var albums = [albumPicasso, albumMarconi, albumDrake];
+     var index = 1;
+     albumImage.addEventListener("click", function(event) {
+       setCurrentAlbum(albums[index]);    
+       index++;
+       if (index == albums.length) {
+           index = 0;
+       }
+    });
  };
+

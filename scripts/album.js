@@ -30,6 +30,22 @@
      ]
  };
 
+// Mollie's Example Album
+ var albumDrake = {
+     title: 'If You are Reading this its Too Late',
+     artist: 'Drake',
+     label: 'Sony',
+     year: '2015',
+     albumArtUrl: 'assets/images/album_covers/20.png',
+     songs: [
+         { title: 'Hotline Blink', duration: '1:01' },
+         { title: 'Trophies', duration: '5:01' },
+         { title: 'Fake Love', duration: '3:21'},
+         { title: 'One Dance', duration: '3:14' },
+         { title: 'Too Good', duration: '2:15'}
+     ]
+ };
+
 var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -68,3 +84,5 @@ var createSongRow = function(songNumber, songName, songLength) {
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
  };
+
+document.getElementsByClassName("albumImage").addEventListener("click", setCurrentAlbum );

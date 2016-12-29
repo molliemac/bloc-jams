@@ -72,7 +72,7 @@ var createSongRow = function(songNumber, songName, songLength) {
      var $albumImage = $('.album-cover-art');
      var $albumSongList = $('.album-view-song-list');
      
-    $albumTitle.text(album.title);
+     $albumTitle.text(album.title);
      $albumArtist.text(album.artist);
      $albumReleaseInfo.text(album.year + ' ' + album.label);
      $albumImage.attr('src', album.albumArtUrl);
@@ -113,7 +113,7 @@ var nextSong = function() {
     }
     
     // Set a new current song
-     currentlyPlayingSongNumber = currentSongIndex + 1;
+    currentlyPlayingSongNumber = currentSongIndex + 1;
     currentSoundFile.play();
     currentSongFromAlbum = currentAlbum.songs[currentSongIndex];
     
@@ -193,6 +193,21 @@ var getSongNumberCell = function(number){
     return $('.song-item-number[data-song-number="' + number + '"]');
 };
 
+var togglePlayFromPlayerBar = function(){
+	
+	if (currentlyPlayingSongNumber !== songNumber && $playerButton.click()) {
+        $(this).html(pauseButtonTemplate);
+        currentSoundFile.play();
+        $playerBar.html(pauseButtonTemplate);
+	} else if (currentlyPlayingSongNumber === songNumber) {
+                $(this).html(pauseButtonTemplate);
+                $playerButton.html(playerBarPauseButton);
+                currentSoundFile.play();
+            } 
+
+
+};
+
 //Album button templates
 var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
 var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
@@ -207,10 +222,12 @@ var playerBarPauseButton = '<span class="ion-pause"></span>';
  var currentVolume = 80;
  var $previousButton = $('.main-controls .previous');
  var $nextButton = $('.main-controls .next');
+ var $playerButton = $('.main-controls .play-pause');
  
  $(document).ready(function() {
      setCurrentAlbum(albumPicasso);
      $previousButton.click(previousSong);
      $nextButton.click(nextSong);
+     $playerButton.click(togglePlayFromPlayerBar);
  });
 
